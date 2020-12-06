@@ -34,7 +34,7 @@ void get_mac_info(char * mac_info){
 }
 
 void get_proc_info(char *buff){
-    snprintf(buff,sizeof(buff),"proc_configured=%d\nproc_available=%d\n",get_nprocs_conf(), get_nprocs() );
+    snprintf(buff,sizeof(buff),"%d%d\n",get_nprocs_conf(), get_nprocs() );
 }
 
 void compute_md5(char *str, unsigned char digest[16]) {
