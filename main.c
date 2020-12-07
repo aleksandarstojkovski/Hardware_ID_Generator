@@ -37,6 +37,12 @@ void get_proc_info(char *buff){
     snprintf(buff,sizeof(buff),"%d%d\n",get_nprocs_conf(), get_nprocs() );
 }
 
+void get_mem_info(char *buff){
+    struct sysinfo si;
+    sysinfo(&si);
+    snprintf(buff,sizeof(buff),"%lu\n",si.totalram);
+}
+
 void compute_md5(char *str, unsigned char digest[16]) {
     MD5_CTX ctx;
     MD5_Init(&ctx);
@@ -48,13 +54,18 @@ int main (int argc, const char * argv[]) {
 
     char mac_info[1000] = {0};
     char proc_info[1000] = {0};
+    char mem_info[1000] = {0};
     char concat_info[1000] = {0};
     char proc_desc[] = "proc_info=";
+    char mem_desc[] = "mem_info=";
     unsigned char md5_digest[16] = {0};
-
+    
     get_mac_info(mac_info);
     get_proc_info(proc_info);
+    get_mem_info(mem_info);
 
+    strcat(concat_info, mem_desc);
+    strcat(concat_info, mem_info);
     strcat(concat_info, proc_desc);
     strcat(concat_info, proc_info);
     strcat(concat_info, mac_info);
