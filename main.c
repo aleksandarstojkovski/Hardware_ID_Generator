@@ -56,8 +56,8 @@ int main (int argc, const char * argv[]) {
     get_proc_info(proc_info);
 
     strcat(concat_info, proc_desc);
-    strcat(concat_info, mac_info);
     strcat(concat_info, proc_info);
+    strcat(concat_info, mac_info);
 
     // create md5sum
     compute_md5(concat_info, md5_digest);
