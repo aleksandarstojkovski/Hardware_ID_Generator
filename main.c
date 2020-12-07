@@ -54,8 +54,8 @@ void compute_md5(char *str, unsigned char digest[16]) {
 int main (int argc, const char * argv[]) {
 
     char mac_info[1000] = {0};
-    char proc_info[1000] = {0};
-    char mem_info[1000] = {0};
+    char proc_info[100] = {0};
+    char mem_info[100] = {0};
     char concat_info[1000] = {0};
     char proc_desc[] = "proc_info=";
     char mem_desc[] = "mem_info=";
