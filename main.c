@@ -34,13 +34,13 @@ void get_mac_info(char * mac_info){
 }
 
 void get_proc_info(char *buff){
-    snprintf(buff,sizeof(buff),"%d%d\n",get_nprocs_conf(), get_nprocs() );
+    snprintf(buff,sizeof(buff),"%d%d",get_nprocs_conf(), get_nprocs());
 }
 
 void get_mem_info(char *buff){
     struct sysinfo si;
     sysinfo(&si);
-    snprintf(buff,sizeof(buff),"%lu\n",si.totalram);
+    snprintf(buff,sizeof(buff),"%lu",si.totalram);
 }
 
 void compute_md5(char *str, unsigned char digest[16]) {
@@ -66,8 +66,10 @@ int main (int argc, const char * argv[]) {
 
     strcat(concat_info, mem_desc);
     strcat(concat_info, mem_info);
+    strcat(concat_info, "\n");
     strcat(concat_info, proc_desc);
     strcat(concat_info, proc_info);
+    strcat(concat_info, "\n");
     strcat(concat_info, mac_info);
 
     // create md5sum
