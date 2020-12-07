@@ -49,11 +49,13 @@ int main (int argc, const char * argv[]) {
     char mac_info[1000] = {0};
     char proc_info[1000] = {0};
     char concat_info[1000] = {0};
+    char proc_desc[] = "proc_info=";
     unsigned char md5_digest[16] = {0};
 
     get_mac_info(mac_info);
     get_proc_info(proc_info);
 
+    strcat(concat_info, proc_desc);
     strcat(concat_info, mac_info);
     strcat(concat_info, proc_info);
 
