@@ -18,7 +18,8 @@ void get_mac_info(char * mac_info){
     else {
          for ( ifa = ifaddr; ifa != NULL; ifa = ifa->ifa_next) {
              // exclude wlan and wifi interfaces (because they are not loaded into the initramfs)
-             if ( (ifa->ifa_addr) && (ifa->ifa_addr->sa_family == AF_PACKET)  && strstr(ifa->ifa_name,"wifi") == NULL && strstr(ifa->ifa_name,"wlan") == NULL ) {
+             // exclude bridged interfaces as well
+             if ( (ifa->ifa_addr) && (ifa->ifa_addr->sa_family == AF_PACKET)  && strstr(ifa->ifa_name,"wifi") == NULL && strstr(ifa->ifa_name,"wlan") == NULL && strstr(ifa->ifa_name,"br") == NULL ) {
                  struct sockaddr_ll *s = (struct sockaddr_ll*)ifa->ifa_addr;
                  snprintf(buff,sizeof(buff),"%-8s ", ifa->ifa_name);
                  strcat(concat, buff);
@@ -80,5 +81,8 @@ int main (int argc, const char * argv[]) {
     for (int i = 0; i < 16; i++)
         printf("%02x", md5_digest[i]);
     putchar ('\n');
+    
+    // debug
+    // printf("%s", concat_info);
 
 }
